@@ -1,0 +1,27 @@
+
+version: '3.3'    
+services:
+  pico_hole:
+    build: .
+    logging:
+      driver: local
+    restart: always
+    container_name: pico_hole
+    hostname: pico_hole
+    networks:
+    - bridged-network
+    ports:
+    - 53
+    - 5353
+      
+networks:
+  bridged-network:
+    name: dockervlan
+    driver: macvlan
+    driver_opts:
+      parent: eth0
+    ipam:
+      config:
+        - subnet: "192.168.100.0/24"
+          ip_range: "192.168.100.64/26"
+          gateway: "192.168.100.1"
