@@ -69,7 +69,7 @@ extern "C" bool start_dns_server()
     upstream_sock = socket(AF_INET, SOCK_DGRAM, 0);
     if (downstream_sock < 0 || upstream_sock < 0 )
     {
-        trace("Failed to create sockets");
+        trace("Failed to create sockets\r\n");
         return false;
     }
 

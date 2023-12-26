@@ -2,7 +2,7 @@
 #define _DNS_SERVER_H
 
 #define TIMEOUT_DNS_REQUEST 30000
-#define DECODE_BUFFER_SIZE DNS_DECODEBUF_8K
+#define DECODE_BUFFER_SIZE 16000
 
 #include <stdbool.h>
 #include <stddef.h>

@@ -3,7 +3,10 @@
 
 int main()
 {
-    start_dns_server();
+    if (!start_dns_server())
+    {
+        return -1;
+    }
 
     while (true)
     {
