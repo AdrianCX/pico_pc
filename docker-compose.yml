@@ -11,8 +11,8 @@ services:
     networks:
     - bridged-network
     ports:
-    - 53
-    - 5353
+    - 53:5301
+    - 5353:5303
       
 networks:
   bridged-network:

@@ -65,6 +65,11 @@ extern "C" bool start_dns_server()
     anyaddr.sin_family = AF_INET;
     anyaddr.sin_addr.s_addr = INADDR_ANY;
     
+    if (inet_aton("192.168.100.64", &anyaddr.sin_addr) == 0) {
+        trace("Invalid address\n");
+        return false;
+    }
+
     downstream_sock = socket(AF_INET, SOCK_DGRAM, 0);
     upstream_sock = socket(AF_INET, SOCK_DGRAM, 0);
     if (downstream_sock < 0 || upstream_sock < 0 )
@@ -73,14 +78,14 @@ extern "C" bool start_dns_server()
         return false;
     }
 
-    anyaddr.sin_port = htons(53);
+    anyaddr.sin_port = htons(5301);
     if ( bind(downstream_sock, (const struct sockaddr *)&anyaddr, sizeof(anyaddr)) < 0 )
     {
         trace("Failed to bind on port 53\r\n");
         return false;
     }
 
-    anyaddr.sin_port = htons(5353);
+    anyaddr.sin_port = htons(5303);
     if ( bind(upstream_sock, (const struct sockaddr *)&anyaddr, sizeof(anyaddr)) < 0 )
     {
         trace("Failed to bind on port 5353\r\n");
